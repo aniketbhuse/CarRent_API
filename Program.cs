@@ -1,3 +1,4 @@
+using CarRentalApplication_API.Services;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -12,6 +13,10 @@ builder.Services.AddSwaggerGen();
 // DBContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<ILogService, LogService>();
+builder.Services.AddScoped<IVehicleService, VehicleService>();
+
 
 //  ADD CORS HERE
 builder.Services.AddCors(options =>

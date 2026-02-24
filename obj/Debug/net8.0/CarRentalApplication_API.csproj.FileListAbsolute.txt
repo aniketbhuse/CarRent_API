@@ -60,6 +60,7 @@ C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\o
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\CarRentalApplication_API.csproj.CoreCompileInputs.cache
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\CarRentalApplication_API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\CarRentalApplication_API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\CarRentalApplication_API.sourcelink.json
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\rjimswa.dswa.cache.json
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json

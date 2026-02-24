@@ -1,6 +1,8 @@
 ﻿using CarRentalApplication_API.Model;
+using CarRentalApplication_API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace CarRentalApplication_API.Controllers
 {
@@ -9,12 +11,15 @@ namespace CarRentalApplication_API.Controllers
     public class BookingController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogService _logService;
 
-        public BookingController(ApplicationDbContext context)
+        public BookingController(ApplicationDbContext context, ILogService logService)
         {
             _context = context;
+            _logService = logService;
         }
 
+        // ========================= GET ALL BOOKINGS =========================
         [HttpGet("GetAllBooking")]
         public async Task<IActionResult> GetBooking()
         {
@@ -40,13 +45,25 @@ namespace CarRentalApplication_API.Controllers
                                          v.seating_capacity,
                                          v.license_Plate
                                      }).ToListAsync();
+
+                await _logService.AddLogAsync("Retrieved all bookings successfully", "Info");
+
                 return Ok(booking);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                await _logService.AddLogAsync($"Error retrieving bookings: {ex.Message}", "Error");
+
+                return StatusCode(500, new
+                {
+                    Status = "Error",
+                    Message = "An error occurred while retrieving bookings",
+                    Error = ex.Message
+                });
             }
         }
+
+        // ========================= ADD BOOKING =========================
         [HttpPost("AddBooking")]
         public async Task<IActionResult> AddBooking([FromBody] Booking booking)
         {
@@ -54,14 +71,20 @@ namespace CarRentalApplication_API.Controllers
             {
                 if (booking == null)
                 {
+                    await _logService.AddLogAsync("Attempted to add null booking", "Warning");
+
                     return BadRequest(new
                     {
                         Status = "Error",
                         Message = "Booking data is null"
                     });
                 }
+
                 _context.Bookings.Add(booking);
                 await _context.SaveChangesAsync();
+
+                await _logService.AddLogAsync($"Booking added successfully (ID: {booking.Booking_Id})", "Info");
+
                 return Ok(new
                 {
                     Status = "Success",
@@ -71,6 +94,8 @@ namespace CarRentalApplication_API.Controllers
             }
             catch (Exception ex)
             {
+                await _logService.AddLogAsync($"Error adding booking: {ex.Message}", "Error");
+
                 return StatusCode(500, new
                 {
                     Status = "Error",
@@ -79,22 +104,31 @@ namespace CarRentalApplication_API.Controllers
                 });
             }
         }
+
+        // ========================= DELETE BOOKING =========================
         [HttpDelete("DeleteBooking/{id}")]
         public async Task<IActionResult> DeleteBooking(int id)
         {
             try
             {
                 var booking = await _context.Bookings.FindAsync(id);
+
                 if (booking == null)
                 {
+                    await _logService.AddLogAsync($"Booking not found for deletion (ID: {id})", "Warning");
+
                     return NotFound(new
                     {
                         Status = "Error",
                         Message = "Booking not found"
                     });
                 }
+
                 _context.Bookings.Remove(booking);
                 await _context.SaveChangesAsync();
+
+                await _logService.AddLogAsync($"Booking deleted successfully (ID: {id})", "Warning");
+
                 return Ok(new
                 {
                     Status = "Success",
@@ -103,6 +137,8 @@ namespace CarRentalApplication_API.Controllers
             }
             catch (Exception ex)
             {
+                await _logService.AddLogAsync($"Error deleting booking (ID: {id}): {ex.Message}", "Error");
+
                 return StatusCode(500, new
                 {
                     Status = "Error",
@@ -112,21 +148,25 @@ namespace CarRentalApplication_API.Controllers
             }
         }
 
+        // ========================= UPDATE BOOKING =========================
         [HttpPut("UpdateBooking/{id}")]
         public async Task<IActionResult> UpdateBooking(int id, [FromBody] Booking updatedBooking)
         {
             try
             {
                 var booking = await _context.Bookings.FindAsync(id);
+
                 if (booking == null)
                 {
+                    await _logService.AddLogAsync($"Booking not found for update (ID: {id})", "Warning");
+
                     return NotFound(new
                     {
                         Status = "Error",
                         Message = "Booking not found"
                     });
                 }
-                // Update the booking properties
+
                 booking.Pickup_Datetime = updatedBooking.Pickup_Datetime;
                 booking.Dropoff_Datetime = updatedBooking.Dropoff_Datetime;
                 booking.Total_Days = updatedBooking.Total_Days;
@@ -134,8 +174,12 @@ namespace CarRentalApplication_API.Controllers
                 booking.Total_Amount = updatedBooking.Total_Amount;
                 booking.Booking_Status = updatedBooking.Booking_Status;
                 booking.UpdatedAt = DateTime.UtcNow;
+
                 _context.Bookings.Update(booking);
                 await _context.SaveChangesAsync();
+
+                await _logService.AddLogAsync($"Booking updated successfully (ID: {id})", "Info");
+
                 return Ok(new
                 {
                     Status = "Success",
@@ -145,6 +189,8 @@ namespace CarRentalApplication_API.Controllers
             }
             catch (Exception ex)
             {
+                await _logService.AddLogAsync($"Error updating booking (ID: {id}): {ex.Message}", "Error");
+
                 return StatusCode(500, new
                 {
                     Status = "Error",
@@ -154,20 +200,27 @@ namespace CarRentalApplication_API.Controllers
             }
         }
 
+        // ========================= GET BOOKING BY ID =========================
         [HttpGet("GetBookingById/{id}")]
         public async Task<IActionResult> GetBookingById(int id)
         {
             try
             {
                 var booking = await _context.Bookings.FindAsync(id);
+
                 if (booking == null)
                 {
+                    await _logService.AddLogAsync($"Booking not found (ID: {id})", "Warning");
+
                     return NotFound(new
                     {
                         Status = "Error",
                         Message = "Booking not found"
                     });
                 }
+
+                await _logService.AddLogAsync($"Retrieved booking successfully (ID: {id})", "Info");
+
                 return Ok(new
                 {
                     Status = "Success",
@@ -177,6 +230,8 @@ namespace CarRentalApplication_API.Controllers
             }
             catch (Exception ex)
             {
+                await _logService.AddLogAsync($"Error retrieving booking (ID: {id}): {ex.Message}", "Error");
+
                 return StatusCode(500, new
                 {
                     Status = "Error",

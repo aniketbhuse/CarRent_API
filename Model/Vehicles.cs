@@ -39,4 +39,18 @@ namespace CarRentalApplication_API.Model
 
         
     }
+
+    [Table("vehicle_categories")]
+    public class vehicle_categories
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int category_id { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string category_Name { get; set; } = string.Empty;
+
+        [StringLength(500)]
+        public string Description { get; set; } = string.Empty;
+    }
 }

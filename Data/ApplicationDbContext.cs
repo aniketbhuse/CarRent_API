@@ -11,5 +11,6 @@ public class ApplicationDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Booking> Bookings { get; set; }
     public DbSet<Vehicles> Vehicles { get; set; }
-
+    public DbSet<SystemLog> SystemLogs { get; set; }
+    public DbSet<vehicle_categories> vehicle_Categories { get; set; }
 }
