@@ -189,6 +189,7 @@ namespace CarRentalApplication_API.Controllers
                 user.last_Name = updatedUser.last_Name;
                 user.email = updatedUser.email;
                 user.phone_Number = updatedUser.phone_Number;
+                user.gender = updatedUser.gender;
                 user.password = updatedUser.password;
                 user.role_Id = updatedUser.role_Id;
                 user.updatedAt = DateTime.UtcNow;

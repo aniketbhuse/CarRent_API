@@ -28,6 +28,8 @@ namespace CarRentalApplication_API.Model
         [Required]
         public string password { get; set; } = string.Empty;
 
+        public string gender { get; set; } = string.Empty;
+
         public DateTime createdAt { get; set; } = DateTime.UtcNow;
 
         public DateTime updatedAt { get; set; } = DateTime.UtcNow;
