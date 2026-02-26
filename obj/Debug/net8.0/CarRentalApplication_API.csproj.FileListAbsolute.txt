@@ -69,10 +69,10 @@ C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\o
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\CarRenta.94BBE2B5.Up2Date
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\CarRentalApplication_API.dll
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\refint\CarRentalApplication_API.dll
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\CarRentalApplication_API.pdb
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\CarRentalApplication_API.genruntimeconfig.cache
 C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\ref\CarRentalApplication_API.dll
+C:\Users\Aniket\source\repos\CarRentalApplication_API\CarRentalApplication_API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

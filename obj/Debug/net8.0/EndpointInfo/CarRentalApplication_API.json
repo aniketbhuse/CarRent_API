@@ -167,6 +167,172 @@
         }
       }
     },
+    "/api/Prices/GetAll": {
+      "get": {
+        "tags": [
+          "Prices"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Prices/GetById/{id}": {
+      "get": {
+        "tags": [
+          "Prices"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Prices/Add": {
+      "post": {
+        "tags": [
+          "Prices"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Price"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Price"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Price"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Prices/Update/{id}": {
+      "put": {
+        "tags": [
+          "Prices"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Price"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Price"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Price"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Prices/Delete/{id}": {
+      "delete": {
+        "tags": [
+          "Prices"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Prices/ByVehicle/{vehicleId}": {
+      "get": {
+        "tags": [
+          "Prices"
+        ],
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Prices/Active": {
+      "get": {
+        "tags": [
+          "Prices"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/User/GetAllRole": {
       "get": {
         "tags": [
@@ -723,6 +889,75 @@
           "password": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Price": {
+        "required": [
+          "base_price_per_day",
+          "effective_from",
+          "effective_to"
+        ],
+        "type": "object",
+        "properties": {
+          "price_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vehicle_Id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "vehicle": {
+            "$ref": "#/components/schemas/Vehicles"
+          },
+          "category_id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "vehicleCategory": {
+            "$ref": "#/components/schemas/vehicle_categories"
+          },
+          "base_price_per_day": {
+            "type": "number",
+            "format": "double"
+          },
+          "weekend_price": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "holiday_price": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "discount_percentage": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "effective_from": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "effective_to": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false

@@ -13,4 +13,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Vehicles> Vehicles { get; set; }
     public DbSet<SystemLog> SystemLogs { get; set; }
     public DbSet<vehicle_categories> vehicle_Categories { get; set; }
+
+    // Prices table
+    public DbSet<Price> Prices { get; set; }
 }
