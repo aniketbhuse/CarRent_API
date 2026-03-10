@@ -26,8 +26,12 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins(
-                "http://localhost:4200",   // Angular default port
-                "http://localhost:52360"   // The port from your error message
+                "http://localhost:4200",   // Angular default port (http)
+                "https://localhost:4200",  // Angular served with HTTPS
+                "http://127.0.0.1:4200",
+                "https://127.0.0.1:4200",
+                "http://localhost:52360",  // additional port seen in error
+                "https://localhost:52360"
             )
             .AllowAnyMethod()
             .AllowAnyHeader()
@@ -43,6 +47,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Ensure CORS runs early so preflight (OPTIONS) requests aren't redirected by HTTPS
+app.UseCors("AllowAngularApp");
 
 app.UseHttpsRedirection();
 
